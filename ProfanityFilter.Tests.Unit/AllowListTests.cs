@@ -21,7 +21,6 @@ SOFTWARE.
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProfanityFilter;
-using ProfanityFilter.Interfaces;
 
 namespace ProfanityFilter.Tests.Unit
 {
@@ -31,7 +30,7 @@ namespace ProfanityFilter.Tests.Unit
         [TestMethod]
         public void ConstructorSetsAllowList()
         {
-            IProfanityFilter filter = new ProfanityFilter();
+            IProfanityFilter filter = new DefaultProfanityFilter();
             Assert.IsNotNull(filter.AllowList);
         }
 

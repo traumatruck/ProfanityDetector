@@ -21,7 +21,6 @@ SOFTWARE.
 using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProfanityFilter.Interfaces;
 
 namespace ProfanityFilter.Tests.Unit
 {
@@ -32,7 +31,7 @@ namespace ProfanityFilter.Tests.Unit
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorThrowsArgumentNullExceptionForNullWordListArray()
         {
-            _ = new ProfanityFilter((string[])null);
+            _ = new DefaultProfanityFilter((string[])null);
         }
 
         [TestMethod]
@@ -45,7 +44,7 @@ namespace ProfanityFilter.Tests.Unit
                "bollocks"
             };
 
-            IProfanityFilter filter = new ProfanityFilter(_wordList);
+            IProfanityFilter filter = new DefaultProfanityFilter(_wordList);
 
             Assert.AreEqual(3, filter.Count);
         }
@@ -54,7 +53,7 @@ namespace ProfanityFilter.Tests.Unit
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorThrowsArgumentNullExceptionForNullWordList()
         {
-            _ = new ProfanityFilter((List<string>)null);
+            _ = new DefaultProfanityFilter((List<string>)null);
         }
 
         [TestMethod]
@@ -67,7 +66,7 @@ namespace ProfanityFilter.Tests.Unit
                "bollocks"
             };
 
-            IProfanityFilter filter = new ProfanityFilter(new List<string>(_wordList));
+            IProfanityFilter filter = new DefaultProfanityFilter(new List<string>(_wordList));
 
             Assert.AreEqual(3, filter.Count);
         }
@@ -91,7 +90,7 @@ namespace ProfanityFilter.Tests.Unit
         [TestMethod]
         public void AddProfanityAddsToList()
         {
-            var filter = new ProfanityFilter();
+            var filter = new DefaultProfanityFilter();
             Assert.IsFalse(filter.IsProfanity("fluffy"));
 
             filter.AddProfanity("fluffy");
@@ -194,7 +193,7 @@ namespace ProfanityFilter.Tests.Unit
         [TestMethod]
         public void RemoveDeletesAProfanityAndIsProfanitiyIgnoresIt()
         {
-            var filter = new ProfanityFilter();
+            var filter = new DefaultProfanityFilter();
 
             Assert.IsTrue(filter.IsProfanity("shit"));
             filter.RemoveProfanity("shit");

@@ -25,7 +25,6 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using ProfanityFilter.Interfaces;
 
 namespace ProfanityFilter
 {
@@ -35,13 +34,13 @@ namespace ProfanityFilter
     /// All words are treated as case insensitive.
     ///
     /// </summary>
-    public class ProfanityFilter : ProfanityBase, IProfanityFilter
+    public class DefaultProfanityFilter : ProfanityBase, IProfanityFilter
     {
 
         /// <summary>
         /// Default constructor that loads up the default profanity list.
         /// </summary>
-        public ProfanityFilter()
+        public DefaultProfanityFilter()
         {
             AllowList = new AllowList();
         }
@@ -51,7 +50,7 @@ namespace ProfanityFilter
         /// profanity list.
         /// </summary>
         /// <param name="profanityList">Array of words to add into the filter.</param>
-        public ProfanityFilter(string[] profanityList) : base (profanityList)
+        public DefaultProfanityFilter(string[] profanityList) : base (profanityList)
         {
             AllowList = new AllowList();
         }
@@ -61,7 +60,7 @@ namespace ProfanityFilter
         /// profanity list.
         /// </summary>
         /// <param name="profanityList">List of words to add into the filter.</param>
-        public ProfanityFilter(List<string> profanityList) : base(profanityList)
+        public DefaultProfanityFilter(List<string> profanityList) : base(profanityList)
         {
             AllowList = new AllowList();
         }
